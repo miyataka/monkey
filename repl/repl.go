@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/miyataka/monkey/lexer"
-	"github.com/miyataka/monkey/token"
+	"github.com/miyataka/monkey-interpreter/lexer"
+	"github.com/miyataka/monkey-interpreter/token"
 )
 
 const PROMPT = ">> "
