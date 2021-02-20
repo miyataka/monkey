@@ -361,12 +361,12 @@ func testInfixExpression(t *testing.T, exp ast.Expression, left interface{}, ope
 }
 
 func TestBooleanExpression(t *testing.T) {
-	input := "TRUE"
+	input := "true"
 
 	l := lexer.New(input)
 	p := New(l)
 
-	program := p.ParseBoolean()
+	program := p.ParseProgram()
 	checkParserErrors(t, p)
 
 	if len(program.Statements) != 1 {
@@ -377,15 +377,15 @@ func TestBooleanExpression(t *testing.T) {
 		t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
 	}
 
-	literal, ok := stmt.Expression.(*ast.IntegerLiteral)
+	boolean, ok := stmt.Expression.(*ast.Boolean)
 	if !ok {
-		t.Fatalf("exp not *ast.IntegerLiteral. got=%T", stmt.Expression)
+		t.Fatalf("exp not *ast.Boolean. got=%T", stmt.Expression)
 	}
-	if literal.TokenLiteral() != "5" {
-		t.Errorf("literal.Value not %d, got=%d", 5, literal.Value)
+	if boolean.TokenLiteral() != "true" {
+		t.Errorf("boolean.Value not %t, got=%t", true, boolean.Value)
 	}
-	if literal.TokenLiteral() != "5" {
-		t.Errorf("literal.TokenLiteral not %s, got=%s", "5", literal.TokenLiteral())
+	if boolean.TokenLiteral() != "true" {
+		t.Errorf("boolean.TokenLiteral not %s, got=%s", input, boolean.TokenLiteral())
 
 	}
 
